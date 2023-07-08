@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Hufmman-copy.dir/main.cpp.o CMakeFiles/Hufmman-copy.dir/src/Decoder.cpp.o CMakeFiles/Hufmman-copy.dir/src/FileWriter.cpp.o CMakeFiles/Hufmman-copy.dir/src/HuffmanNode.cpp.o CMakeFiles/Hufmman-copy.dir/src/HuffmanTree.cpp.o -o Hufmman-copy 

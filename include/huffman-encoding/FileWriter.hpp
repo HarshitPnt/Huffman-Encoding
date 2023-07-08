@@ -1,17 +1,18 @@
+#pragma once
 #include <fstream>
 #include <queue>
 #include <map>
-#ifndef HUFFMAN_TREE
-#define HUFFMAN_TREE
-#include "HuffmanTree.hpp"
-#endif
+#include "huffman-encoding/HuffmanTree.hpp"
 class FileWriter
 {
 public:
     std::string output_file_name;
     std::fstream out;
     int num_characters;
-    FileWriter(std::string output);
+    long long int num_characters_encoded = 0;
+    long long int written = 0;
+    int last = 0;
+    FileWriter(std::string output, long long int num_characters_encoded);
     void writeMetaData(HuffmanTree tree);
     void encodeFile(std::string input_file_name, HuffmanTree &tree);
     void insertEncoding(HuffmanTree tree);

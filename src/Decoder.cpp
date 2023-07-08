@@ -129,11 +129,14 @@ std::string Decoder::decimal_to_binary(int decimal)
 void Decoder::decodeContent()
 {
     std::string str = "";
+    std::cout << "Decoding..." << std::endl;
+
     while (!inp.eof())
     {
         unsigned char current = inp.get();
         std::string decodedString = decimal_to_binary(current);
-
+        long long int total_to_be_decoded = num_characters_decoded;
+        int last = 0;
         for (int i = 0; i < 8; ++i)
         {
             str += std::string(1, decodedString[i]);
@@ -142,13 +145,21 @@ void Decoder::decodeContent()
                 out << string_to_char[str];
                 str = "";
                 --num_characters_decoded;
+                if (((20 * (total_to_be_decoded - num_characters_decoded)) / total_to_be_decoded) > last)
+                {
+                    ++last;
+                    std::cout << "-" << std::flush;
+                }
                 if (num_characters_decoded == 0)
                 {
+                    std::cout << std::endl;
                     out.close();
                     return;
                 }
             }
         }
     }
+    std::cout << std::endl;
+
     out.close();
 }

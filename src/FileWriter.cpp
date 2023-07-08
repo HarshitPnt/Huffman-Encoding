@@ -4,11 +4,12 @@
 #include <fstream>
 #include <queue>
 #include <iostream>
-FileWriter::FileWriter(std::string output)
+FileWriter::FileWriter(std::string output, long long int num_char)
 {
     output_file_name = output;
     out.open(output_file_name, std::ios::out);
     num_characters = 0;
+    num_characters_encoded = num_char;
 }
 
 void FileWriter::writeMetaData(HuffmanTree tree)
@@ -74,10 +75,17 @@ void FileWriter::flush_byte()
     }
     unsigned char c = binary_to_char(str);
     out << c;
+    ++written;
+    if (((20 * written / num_characters_encoded)) > last)
+    {
+        ++last;
+        std::cout << "-" << std::flush;
+    }
 }
 
 void FileWriter::encodeFile(std::string input_file_name, HuffmanTree &tree)
 {
+    std::cout << "Encoding..." << std::endl;
     int charcater_count = 0;
     char curr;
     std::fstream inp(input_file_name, std::ios::in);
@@ -101,7 +109,6 @@ void FileWriter::encodeFile(std::string input_file_name, HuffmanTree &tree)
         ++charcater_count;
         flush_byte();
     }
-    else
-    {
-    }
+    out << (char)-1;
+    std::cout << std::endl;
 }

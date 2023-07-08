@@ -1,3 +1,4 @@
+#pragma once
 #include "HuffmanNodes.hpp"
 #include <queue>
 #include <vector>

@@ -1,3 +1,4 @@
+#pragma once
 #include "HuffmanTree.hpp"
 #include <fstream>
 

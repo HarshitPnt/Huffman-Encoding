@@ -111,7 +111,7 @@ void HuffmanTree::assignCode(HuffmanNode *root, std::string code)
 
 void HuffmanTree::encodeFile(std::string input_file_name, std::string output_file_name)
 {
-    FileWriter fw(output_file_name);
+    FileWriter fw(output_file_name, num_characters_encoded);
     fw.insertEncoding(*this);
     fw.writeMetaData(*this);
     fw.encodeFile(input_file_name, *this);
